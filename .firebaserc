@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "portfolio-sodano-mateo"
+  },
+  "targets": {
+    "portfolio-sodano-mateo": {
+      "hosting": {
+        "sitefirebase2": [
+          "sitefirebase2"
+        ],
+        "site2": [
+          "sodano-mateo"
+        ]
+      }
+    }
+  }
+}
