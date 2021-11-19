@@ -29,9 +29,9 @@
         class="mb-5"
         cols="12"
       >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
+        <p class="headline font-weight-regular">
+        This site will be a portfolio site made by myself using Vue.js
+        </p>
 
         <v-row justify="center">
           <a
@@ -50,9 +50,9 @@
         class="mb-5"
         cols="12"
       >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
+        <p class="headline font-weight-regular">
+          Currently learning Javascript
+        </p>
 
         <v-row justify="center">
           <a
@@ -71,16 +71,16 @@
         class="mb-5"
         cols="12"
       >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
+        <p class="headline font-weight-regular">
+          I will try to update this site as often as I can make changes
+        </p>
 
         <v-row justify="center">
           <a
             v-for="(eco, i) in ecosystem"
             :key="i"
             :href="eco.href"
-            class="subheading mx-3"
+            class="subheading"
             target="_blank"
           >
             {{ eco.text }}
@@ -100,52 +100,52 @@ export default Vue.extend({
   data: () => ({
     ecosystem: [
       {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader'
+        text: '\ntest de lien vers GitHub',
+        href: 'https://github.com/teonino'
       },
       {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify'
+        text: '',
+        href: ''
       },
       {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify'
+        text: '',
+        href: ''
       }
     ],
     importantLinks: [
       {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com'
+        text: '',
+        href: ''
       },
       {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com'
+        text: '',
+        href: ''
       },
       {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify'
+        text: '',
+        href: ''
       },
       {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs'
+        text: '',
+        href: ''
       },
       {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify'
+        text: '',
+        href: ''
       }
     ],
     whatsNext: [
       {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer'
+        text: '',
+        href: ''
       },
       {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
+        text: '',
+        href: ''
       },
       {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
+        text: '',
+        href: ''
       }
     ]
   })

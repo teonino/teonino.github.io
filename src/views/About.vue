@@ -2,7 +2,7 @@
   <div class="about">
     <h1>{{ $t("0001") }}</h1>
     <v-btn depressed @click="changeLang()">
-      change language
+      Change language
     </v-btn>
   </div>
 </template>
@@ -10,8 +10,8 @@
 import Vue from 'vue'
 
 export default {
-  name: 'About',
-  mounted: function () {
+  name: 'About'
+  /* mounted: function () {
     this.$i18n.locale = 'fr'
   },
   methods: {
@@ -25,6 +25,6 @@ export default {
         console.log('fr')
       }
     }
-  }
+  } */
 }
 </script>
