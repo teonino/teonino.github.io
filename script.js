@@ -45,10 +45,8 @@ fetch('https://restcountries.com/v3.1/all')
         if(country.capitalInfo?.latlng) {
             capitalLat = country.capitalInfo.latlng[0];
             capitalLnt = country.capitalInfo.latlng[1];
-        }
 
-        
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${capitalLat}&longitude=${capitalLnt}&current=apparent_temperature,is_day,precipitation,cloud_cover&forecast_days=1&temporal_resolution=native`)
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${capitalLat}&longitude=${capitalLnt}&current=apparent_temperature,is_day,precipitation,cloud_cover&forecast_days=1&temporal_resolution=native`)
             .then(response => response.json())
             .then(data =>{
                 capitalWeather = data;
@@ -67,8 +65,9 @@ fetch('https://restcountries.com/v3.1/all')
                         <img src="${country.flags.svg}" alt= "Flag of ${country.name.common}" width ='100'>
                         <p><strong>Capital: </strong> ${country.capital?.[0] || 'Unknown'}</p>
                         <p><strong>Population:</strong>${country.population.toLocaleString()}</p>
+
                         <h3>Capital current weather</h3>
-                        
+
                         <p><strong>Cloud Cover:</strong>${capitalWeather.current.cloud_cover.toLocaleString()} ${capitalWeather.current_units.cloud_cover}</p>
                         <p><strong>Temperature:</strong>${capitalWeather.current.apparent_temperature.toLocaleString()} ${capitalWeather.current_units.apparent_temperature}</p>
                         <p><strong>Cloud Cover:</strong>${capitalWeather.current.cloud_cover.toLocaleString()} ${capitalWeather.current_units.cloud_cover}</p>
@@ -76,10 +75,21 @@ fetch('https://restcountries.com/v3.1/all')
                         <p><strong>Day or Night:</strong>${isDay}</p>
 
                     `;
+
                 }
-            })
-            .catch(error =>{
+            }).catch(error =>{
                 console.error(error);
             })
+        }
+        else{
+            if(country) {
+                countryInfoDiv.innerHTML = `
+                    <h2>${country.name.common}</h2>
+                    <h3>Country Information</h3>
+                    <img src="${country.flags.svg}" alt= "Flag of ${country.name.common}" width ='100'>
+                    <p><strong>Capital: </strong> "Unknown"</p>
+                `;
+            }
+        }
     })
 
