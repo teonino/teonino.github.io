@@ -70,7 +70,6 @@ fetch('https://restcountries.com/v3.1/all')
 
                         <p><strong>Cloud Cover:</strong>${capitalWeather.current.cloud_cover.toLocaleString()} ${capitalWeather.current_units.cloud_cover}</p>
                         <p><strong>Temperature:</strong>${capitalWeather.current.apparent_temperature.toLocaleString()} ${capitalWeather.current_units.apparent_temperature}</p>
-                        <p><strong>Cloud Cover:</strong>${capitalWeather.current.cloud_cover.toLocaleString()} ${capitalWeather.current_units.cloud_cover}</p>
                         <p><strong>Current Precipitation:</strong>${capitalWeather.current.precipitation.toLocaleString()} ${capitalWeather.current_units.precipitation}</p>
                         <p><strong>Day or Night:</strong>${isDay}</p>
 
@@ -93,3 +92,11 @@ fetch('https://restcountries.com/v3.1/all')
         }
     })
 
+function myFunction(){
+    var x = document.getElementById("myTopnav");
+    if(x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
