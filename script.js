@@ -1,6 +1,9 @@
 
 const countrySelect = document.getElementById('country-select');
 const countryInfoDiv = document.getElementById('country-info');
+const GachaResultDiv = document.getElementById('gacha-result');
+const GachaResultCounter = document.getElementById('roll-counter');
+let rollcounter = [0,0,0,0,0];
 let capitalLat;
 let capitalLnt;
 let capitalWeather =[];
@@ -99,4 +102,24 @@ function myFunction(){
     } else {
         x.className = "topnav";
     }
+}
+
+
+function Roll(){
+    let result = Math.random();
+    console.log(result);
+    if(result >= 0.99) { GachaResultDiv.innerHTML = `<h2>${result}</h2> <h3 style="background-color:Tomato;">Godlike</h3>`; rollcounter[4]++; console.log(rollcounter[4])}
+    else{ if(result >= 0.95) { GachaResultDiv.innerHTML = `<h2>${result}</h2> <h3 style="background-color:Orange;">Legendary</h3>`; rollcounter[3]++; console.log(rollcounter[3])}
+    else{ if(result >= 0.70) { GachaResultDiv.innerHTML = `<h2>${result}</h2> <h3 style="background-color:Violet;">Epic</h3>`; rollcounter[2]++; console.log(rollcounter[2])}
+    else{ if(result >= 0.5) { GachaResultDiv.innerHTML = `<h2>${result}</h2> <h3 style="background-color:DodgerBlue;">Rare</h3>`; rollcounter[1]++; console.log(rollcounter[1])}
+    else{ GachaResultDiv.innerHTML = `<h2>${result}</h2> <h3 style="background-color:Gray;">Common</h3>`; rollcounter[0]++; console.log(rollcounter[0])} } } }
+
+    GachaResultCounter.innerHTML = `
+        <h2>Roll Collection</h2>
+        <h4 style="background-color:Tomato;"><strong>Godlike:</strong>${rollcounter[4]}
+        <h4 style="background-color:Orange;"><strong>Legendary:</strong>${rollcounter[3]}
+        <h4 style="background-color:Violet;"><strong>Epic:</strong>${rollcounter[2]}
+        <h4 style="background-color:DodgerBlue;"><strong>Rare:</strong>${rollcounter[1]}
+        <h4 style="background-color:Gray;"><strong>Common:</strong>${rollcounter[0]}
+        `;
 }

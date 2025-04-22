@@ -7,12 +7,12 @@ body{
     #ffe8f3,
     #d9f3ff
   );
-  display: flex;
-  /*justify-content: center;*/
+  /*display: flex;
+  justify-content: center;
   align-items: flex-start;
   overflow: hidden;
   flex-direction: column;
-  padding:20px;
+  padding:20px;*/
 }
 
 .container {
@@ -132,4 +132,10 @@ body{
     float: top;
     display: block;
     text-align: center;
+  }
+
+  .rollbutton
+  {
+    float: center;
+    justify-content: center;
   }

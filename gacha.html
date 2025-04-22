@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
+        <title>Gacha Game</title>
 
         <link rel="stylesheet" href="style.css">
     </head>
@@ -12,9 +12,9 @@
     <body>
 
         <div class ="topnav" id="'myTopnav">
-            <a href="index.html" class="active">Home</a>
+            <a href="index.html">Home</a>
             <a href="Country.html">Country and Weather</a>
-            <a href="Gacha.html">Gacha</a>
+            <a href="Gacha.html" class="active">Gacha</a>
             <a href="/Contact">Contact</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class = "fa fa bars"></i>
@@ -22,8 +22,16 @@
             
         </div>
 
-        <h1>Home</h1>
-        <p> Welcome to the site I'm coding in order to increase my technical skills</p>
+
+        <h1>Gacha Game</h1>
+
+        <button class="rollbutton" id="Roll Gacha" onclick="Roll()">Roll</button>
+
+        <h2>Roll</h2>
+        <p>Closer to 1 you are, better it is ! Good luck ! </p>
+        <div id = "gacha-result"></div>
+
+        <div id = "roll-counter"></div>
         
         <script src="script.js"></script>
         
