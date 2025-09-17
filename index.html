@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Trader Game - Trading Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <!-- Header with player stats -->
+        <header class="player-stats">
+            <div class="stat-group">
+                <div class="stat">
+                    <span class="label">Cash:</span>
+                    <span id="cash" class="value">$100,000</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Portfolio:</span>
+                    <span id="portfolio-value" class="value">$0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Net Worth:</span>
+                    <span id="net-worth" class="value">$100,000</span>
+                </div>
+            </div>
+            <div class="stat-group">
+                <div class="stat">
+                    <span class="label">Reputation:</span>
+                    <span id="reputation" class="value reputation-good">85</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Legal Risk:</span>
+                    <span id="legal-risk" class="value legal-low">12</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Day:</span>
+                    <span id="day" class="value">1</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main dashboard -->
+        <main class="dashboard">
+            <!-- Market data panel -->
+            <section class="market-panel">
+                <h2>Market Dashboard</h2>
+                <div class="market-grid">
+                    <div class="market-section">
+                        <h3>Stocks</h3>
+                        <div id="stocks-list" class="asset-list"></div>
+                    </div>
+                    <div class="market-section">
+                        <h3>Crypto</h3>
+                        <div id="crypto-list" class="asset-list"></div>
+                    </div>
+                    <div class="market-section">
+                        <h3>Commodities</h3>
+                        <div id="commodities-list" class="asset-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Movers panel -->
+            <section class="movers-panel">
+                <h2>Top Movers</h2>
+                <div class="movers-grid">
+                    <div class="movers-section">
+                        <h3>📈 Top Gainers</h3>
+                        <div id="top-gainers" class="movers-list"></div>
+                    </div>
+                    <div class="movers-section">
+                        <h3>📉 Top Losers</h3>
+                        <div id="top-losers" class="movers-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio panel -->
+            <section class="portfolio-panel">
+                <h2>Your Portfolio</h2>
+                <div id="portfolio-list" class="portfolio-list">
+                    <p class="empty-portfolio">No positions yet. Start trading!</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Events and actions -->
+        <aside class="events-panel">
+            <div class="events-section">
+                <h3>Market News</h3>
+                <div id="news-feed" class="news-feed"></div>
+            </div>
+
+            <div class="events-section opportunities" id="opportunities-section">
+                <h3>Opportunities</h3>
+                <div id="opportunities" class="opportunities"></div>
+            </div>
+
+            <div class="actions-section" id="actions-section">
+                <h3>Player Actions</h3>
+                <div class="actions-grid">
+                    <div class="actions-subpanel legal-actions">
+                        <h4>Legal Actions</h4>
+                        <div id="legal-actions-list" class="actions-list">
+                            <!-- Legal actions will be populated here -->
+                        </div>
+                    </div>
+                    <div class="actions-subpanel illegal-actions">
+                        <h4>Illegal Actions</h4>
+                        <div id="illegal-actions-list" class="actions-list">
+                            <!-- Illegal actions will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="speed-section">
+                <div class="time-control">
+                    <h4>Game Speed</h4>
+                    <div class="speed-slider-container">
+                        <input type="range" id="speed-slider" min="0" max="3" value="1" class="speed-slider">
+                        <div class="speed-labels">
+                            <span>Paused</span>
+                            <span>Slow</span>
+                            <span>Normal</span>
+                            <span>Fast</span>
+                        </div>
+                    </div>
+                    <div class="time-info">
+                        <span id="current-speed">Normal</span> |
+                        <span id="time-remaining">Time: 24:00:00</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Trading modal -->
+    <div id="trading-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-title">Trade Asset</h3>
+            <div class="trade-form">
+                <div class="trade-info">
+                    <p><strong id="asset-name">Asset</strong></p>
+                    <p>Current Price: $<span id="asset-price">0</span></p>
+                    <p>Change: <span id="asset-change">0%</span></p>
+                </div>
+                <div class="trade-inputs">
+                    <label>
+                        Action:
+                        <select id="trade-action">
+                            <option value="buy">Buy</option>
+                            <option value="sell">Sell</option>
+                        </select>
+                    </label>
+
+                    <div class="quantity-section">
+                        <label>
+                            Quantity:
+                            <input type="number" id="trade-quantity" min="1" value="1">
+                        </label>
+
+                        <!-- Buy shortcuts -->
+                        <div id="buy-shortcuts" class="shortcuts-container">
+                            <span class="shortcuts-label">Quick Add:</span>
+                            <button type="button" class="shortcut-btn" data-add="1">+1</button>
+                            <button type="button" class="shortcut-btn" data-add="10">+10</button>
+                            <button type="button" class="shortcut-btn" data-add="100">+100</button>
+                            <button type="button" class="shortcut-btn" data-add="1000">+1000</button>
+                            <button type="button" class="shortcut-btn max-buy" id="max-buy-btn">MAX</button>
+                        </div>
+
+                        <!-- Sell shortcuts -->
+                        <div id="sell-shortcuts" class="shortcuts-container" style="display: none;">
+                            <span class="shortcuts-label">Quick Sell:</span>
+                            <button type="button" class="shortcut-btn sell-percent" data-percent="25">25%</button>
+                            <button type="button" class="shortcut-btn sell-percent" data-percent="50">50%</button>
+                            <button type="button" class="shortcut-btn sell-percent" data-percent="75">75%</button>
+                            <button type="button" class="shortcut-btn sell-percent" data-percent="100">100%</button>
+                        </div>
+                    </div>
+
+                    <div class="holdings-info" id="holdings-info" style="display: none;">
+                        <span>You own: <strong id="current-holdings">0</strong> shares</span>
+                    </div>
+
+                    <div class="affordability-info" id="affordability-info" style="display: none;">
+                        <span>You can afford: <strong id="max-affordable">0</strong> shares</span>
+                    </div>
+
+                    <label>
+                        Total: $<span id="trade-total">0</span>
+                    </label>
+                </div>
+                <button id="execute-trade" class="action-btn primary">Execute Trade</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Opportunity modal -->
+    <div id="opportunity-modal" class="modal">
+        <div class="modal-content opportunity">
+            <span class="close" onclick="closeOpportunityModal()">&times;</span>
+            <h3 id="opportunity-modal-title">Opportunity</h3>
+            <div id="opportunity-content">
+                <div id="opportunity-description"></div>
+                <div id="opportunity-details"></div>
+                <div id="opportunity-risk-info"></div>
+                <div id="opportunity-choices"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Investigation modal -->
+    <div id="investigation-modal" class="modal">
+        <div class="modal-content investigation">
+            <h3>SEC Investigation</h3>
+            <div id="investigation-content">
+                <p>The Securities and Exchange Commission is investigating your recent activities.</p>
+                <div id="charges-list"></div>
+                <textarea id="defense-statement" placeholder="Explain your actions to the AI prosecutor..."></textarea>
+                <button id="submit-defense" class="action-btn primary">Submit Defense</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
